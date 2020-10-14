@@ -1,7 +1,12 @@
+- name: "general: Check if the current environment is WSL"
+  shell: grep -qEi "(Microsoft|WSL)" /proc/version
+  register: is_wsl
+
 - name: "general: Add our /etc/wsl.conf"
   copy:
     src: wsl.conf
     dest: /etc/wsl.conf
+  when: is_wsl.rc == 0
 
 - name: "general: Install aptitude"
   apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
