@@ -1,0 +1,27 @@
+- name: "general: Add our /etc/wsl.conf"
+  copy:
+    src: wsl.conf
+    dest: /etc/wsl.conf
+
+- name: "general: Install aptitude"
+  apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+- name: "general: Create my user"
+  user:
+    name: "{{ user }}"
+    generate_ssh_key: yes
+
+- name: "general: Read in the ssh key"
+  shell: "cat /home/{{ user }}/.ssh/id_rsa.pub"
+  register: ssh_pub_key
+
+- name: "general: Add ssh key to Github"
+  github_key:
+    name: ansible-ubuntu-desktop
+    pubkey: "{{ ssh_pub_key.stdout }}"
+    token: "{{ secrets.github_token }}"
+
+- name: "general: Install general system packages"
+  apt:
+    pkg:
+      - build-essential

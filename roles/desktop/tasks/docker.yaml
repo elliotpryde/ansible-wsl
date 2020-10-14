@@ -1,0 +1,36 @@
+- name: "docker: Install required system packages"
+  apt: name={{ item }} state=latest update_cache=yes
+  loop:
+    [
+      "build-essential",
+      "apt-transport-https",
+      "ca-certificates",
+      "curl",
+      "software-properties-common",
+      "python3-pip",
+      "virtualenv",
+      "python3-setuptools",
+    ]
+
+- name: "docker: Add Docker GPG apt Key"
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: "docker: Add Docker Repository"
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+
+- name: "docker: Update apt and install docker-ce"
+  apt: update_cache=yes name=docker-ce state=latest
+
+- name: "docker: Install Docker Module for Python"
+  pip:
+    name: docker
+
+- name: "docker: add user {{ user }} to docker group"
+  user:
+    name: "{{ user }}"
+    append: yes
+    groups: docker

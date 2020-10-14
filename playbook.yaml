@@ -1,0 +1,21 @@
+---
+- name: "Setting up Ubuntu Desktop"
+  hosts: localhost
+  connection: local
+  become: true
+  become_user: root
+  roles:
+    - desktop
+    - role: gantsign.golang
+      golang_gopath: "{{ gopath }}"
+  vars:
+    user: elliot
+    gopath: $HOME/go-workspace
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ gopath }}/bin"
+  pre_tasks:
+    - name: Include secret variables from secrets.yaml
+      include_vars:
+        file: secrets.yaml
+        name: secrets
+      tags: general

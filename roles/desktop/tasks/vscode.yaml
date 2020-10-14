@@ -1,0 +1,14 @@
+- name: "vscode: Download and add vscode gpg key to apt-get keyring"
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: "vscode: Add vscode repository to /etc/apt/sources.list"
+  apt_repository:
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+
+- name: "vscode: Install vscode"
+  apt:
+    update_cache: yes
+    pkg:
+      - apt-transport-https
+      - code
