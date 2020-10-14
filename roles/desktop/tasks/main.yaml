@@ -2,6 +2,8 @@
   tags: general
 - import_tasks: docker.yaml
   tags: docker
+- import_tasks: git.yaml
+  tags: git
 - import_tasks: az_cli.yaml
   tags: azure
 # - import_tasks: vscode.yaml

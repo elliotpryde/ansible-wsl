@@ -1,0 +1,4 @@
+- name: "git: Set the ~/.gitconfig"
+  copy:
+    src: .gitconfig
+    dest: "/home/{{ user }}/.gitconfig"

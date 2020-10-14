@@ -1,0 +1,40 @@
+[user]
+  email = elliot.pryde@elliotpryde.com
+  name = Elliot Pryde
+[alias]
+  s = "status"
+  co = "checkout"
+  pl = "pull"
+  ps = "push"
+  r = "rebase"
+  cm = "commit"
+  dc = "diff --cached"
+  oops = "commit --amend --no-edit"
+  todo = "grep epTODO"
+  b = "branch"
+  bn = "!git symbolic-ref HEAD | cut -d / -f 3"
+  ap = "add --patch"
+  rs = "reset"
+  cl = "clone"
+  aa = "add --all"
+  cp = "cherry-pick"
+  wip = "commit -m wip"
+  lsm = "!git --no-pager log --oneline --decorate master..head"
+  ll = "!git --no-pager log --pretty=oneline"
+  exec   = "!exec " # excute command at the repository root
+  sl = "stash list"
+  sc = "stash clear"
+  sp = "stash pop"
+  code-changes = "!git log --format=format: --name-only | egrep -v '^$' | sort | uniq -c | sort -rg | head -10"
+[core]
+  autocrlf = false
+[pull]
+  rebase = false
+[fetch]
+  prune = false
+[rebase]
+  autoStash = false
+[pager]
+  diff = true
+  branch = false
+  log = true
