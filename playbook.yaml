@@ -9,6 +9,8 @@
     - role: gantsign.golang
       golang_version: 1.15.2
       golang_gopath: "{{ gopath }}"
+    - role: andrewrothstein.terraform
+      terraform_ver: 0.13.4
   vars:
     user: elliot
     gopath: $HOME/go-workspace

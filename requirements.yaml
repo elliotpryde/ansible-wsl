@@ -1,5 +1,6 @@
 roles:
   - src: gantsign.golang
+  - src: andrewrothstein.terraform
 
 collections:
   - name: community.general

@@ -10,8 +10,6 @@
   tags: azure
 # - import_tasks: vscode.yaml
 #   tags: vscode
-# - import_tasks: terraform.yaml
-#   tasks: terraform
 # - import_tasks: golang.yaml
 #   tags: golang
 # - import_tasks: powershell.yaml
