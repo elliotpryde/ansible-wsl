@@ -18,4 +18,4 @@
       include_vars:
         file: secrets.yaml
         name: secrets
-      tags: general
+      tags: user

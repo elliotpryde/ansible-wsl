@@ -1,0 +1,33 @@
+- name: "user: Make sure the 'wheel' group exists"
+  group:
+    name: wheel
+    state: present
+
+- name: "user: Allow the 'wheel' group to have passwordless access"
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: "^%wheel"
+    line: "%wheel ALL=(ALL) NOPASSWD: ALL"
+    validate: "visudo -cf %s"
+
+- name: "user: Create my user"
+  user:
+    name: "{{ user }}"
+    create_home: yes
+    generate_ssh_key: yes
+    password: "{{ secrets.user_password | password_hash('sha512') }}"
+    append: yes
+    groups:
+      - wheel
+      - sudo
+
+- name: "user: Read in the users's ssh key"
+  shell: "cat /home/{{ user }}/.ssh/id_rsa.pub"
+  register: ssh_pub_key
+
+- name: "user: Add ssh pub key to Github"
+  github_key:
+    name: ansible-ubuntu-desktop
+    pubkey: "{{ ssh_pub_key.stdout }}"
+    token: "{{ secrets.github_token }}"

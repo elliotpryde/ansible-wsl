@@ -1,5 +1,7 @@
 - import_tasks: general.yaml
   tags: general
+- import_tasks: user.yaml
+  tags: user
 - import_tasks: docker.yaml
   tags: docker
 - import_tasks: git.yaml
