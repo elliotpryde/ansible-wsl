@@ -12,8 +12,6 @@
   vars:
     user: elliot
     gopath: $HOME/go-workspace
-  environment:
-    PATH: "{{ ansible_env.PATH }}:{{ gopath }}/bin"
   pre_tasks:
     - name: Include secret variables from secrets.yaml
       include_vars:
