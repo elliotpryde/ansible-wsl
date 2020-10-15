@@ -2,6 +2,12 @@
 
 Installs development tools for any of my Ubuntu workstations.
 
+## Requirements
+
+### For WSL
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
+
 ## Installing
 
 ### Install Ansible
