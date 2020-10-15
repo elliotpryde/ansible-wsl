@@ -8,8 +8,8 @@
   tags: git
 - import_tasks: az_cli.yaml
   tags: azure
-# - import_tasks: vscode.yaml
-#   tags: vscode
+- import_tasks: vscode.yaml
+  tags: vscode
 # - import_tasks: golang.yaml
 #   tags: golang
 # - import_tasks: powershell.yaml
