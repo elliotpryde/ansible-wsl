@@ -7,6 +7,7 @@
   roles:
     - desktop
     - role: gantsign.golang
+      golang_version: 1.15.2
       golang_gopath: "{{ gopath }}"
   vars:
     user: elliot
