@@ -7,13 +7,13 @@
   roles:
     - desktop
     - role: gantsign.golang
-      golang_version: 1.15.2
-      golang_gopath: "{{ gopath }}"
+      golang_version: 1.15.3
+      golang_gopath: $HOME/go-workspace
+      golang_redis_sha256sum: 010a88df924a81ec21b293b5da8f9b11c176d27c0ee3962dc1738d2352d3c02d
     - role: andrewrothstein.terraform
       terraform_ver: 0.13.4
   vars:
     user: elliot
-    gopath: $HOME/go-workspace
   pre_tasks:
     - name: Include secret variables from secrets.yaml
       include_vars:
