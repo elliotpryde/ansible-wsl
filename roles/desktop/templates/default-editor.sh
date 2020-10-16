@@ -4,5 +4,5 @@
 # Ansible managed
 #
 
-export VISUAL='/usr/bin/code'
+export VISUAL='{{ default_visual_editor }}'
 export EDITOR='/usr/bin/vim'

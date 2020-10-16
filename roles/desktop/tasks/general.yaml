@@ -1,12 +1,24 @@
-- name: "general: Check if the current environment is WSL"
-  shell: grep -qEi "(Microsoft|WSL)" /proc/version
-  register: is_wsl
-
 - name: "general: Add our /etc/wsl.conf"
   copy:
     src: wsl.conf
     dest: /etc/wsl.conf
   when: is_wsl.rc == 0
+
+- name: "general: Setting Windows vscode as the default visual editor"
+  template:
+    src: default-editor.sh
+    dest: /etc/profile.d/default-editor.sh
+  vars:
+    default_visual_editor: code
+  when: is_wsl.rc == 0
+
+- name: "general: Setting vscode as the default visual editor"
+  template:
+    src: default-editor.sh
+    dest: /etc/profile.d/default-editor.sh
+  vars:
+    default_visual_editor: /usr/bin/code
+  when: is_wsl.rc != 0
 
 - name: "general: Install aptitude"
   apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
@@ -17,8 +29,3 @@
       - build-essential
       - dos2unix
       - vim
-
-- name: "general: Set the default text editor"
-  copy:
-    src: default-editor.sh
-    dest: /etc/profile.d/default-editor.sh

@@ -1,4 +1,6 @@
 - name: "git: Set the ~/.gitconfig"
-  copy:
+  template:
     src: .gitconfig
     dest: "/home/{{ user }}/.gitconfig"
+    owner: "{{ user }}"
+    group: "{{ user }}"

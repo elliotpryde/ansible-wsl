@@ -1,7 +1,13 @@
+- name: "global: Check if the current environment is WSL"
+  shell: grep -qEi "(Microsoft|WSL)" /proc/version
+  register: is_wsl
+  tags: global
 - import_tasks: general.yaml
   tags: general
 - import_tasks: user.yaml
   tags: user
+- import_tasks: shell.yaml
+  tags: shell
 - import_tasks: docker.yaml
   tags: docker
 - import_tasks: git.yaml
@@ -10,9 +16,10 @@
   tags: azure
 - import_tasks: vscode.yaml
   tags: vscode
+  when: is_wsl.rc != 0
 # - import_tasks: golang.yaml
 #   tags: golang
-# - import_tasks: powershell.yaml
-#   tags: powershell
 # - import_tasks: node_version_manager.yaml
 #   tasks: nvm
+# - import_tasks: powershell.yaml
+#   tags: powershell

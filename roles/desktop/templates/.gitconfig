@@ -27,7 +27,9 @@
   sp = "stash pop"
   code-changes = "!git log --format=format: --name-only | egrep -v '^$' | sort | uniq -c | sort -rg | head -10"
 [core]
-  autocrlf = false
+  autocrlf = {% if is_wsl.rc == 0 %}true{% else %}false{% endif %}
+  # for some reason jinja will exclude the next newline character, so this empty line is needed
+  fileMode = false
 [pull]
   rebase = false
 [fetch]

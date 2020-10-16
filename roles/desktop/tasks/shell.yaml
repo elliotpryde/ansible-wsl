@@ -1,0 +1,12 @@
+- name: "shell: Install zsh"
+  apt: pkg=zsh
+
+- name: "shell: Check if ohmyzsh is installed"
+  stat:
+    path: /home/{{ user }}/.oh-my-zsh
+  register: ohmyzsh_dir
+
+- name: "shell: Install ohmyzsh"
+  shell:
+    cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  when: ohmyzsh_dir.stat.isdir is defined and not ohmyzsh_dir.stat.isdir
