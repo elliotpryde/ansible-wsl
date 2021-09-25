@@ -1,6 +1,6 @@
-# Ansible Ubtunu Desktop
+# Ansible WSL workstation setup
 
-Installs development tools for any of my Ubuntu workstations.
+This playbook installs development tools for any of my Ubuntu workstations.
 
 ## Requirements
 
@@ -36,7 +36,7 @@ ansible-playbook playbook.yaml --ask-become-pass
 
 ### Optional
 
-This machine has a Github SSH key now that the playbook has run, so we can update the repository
+This machine has a Github SSH key now that the playbook has run so that we can update the repository
 remote to use SSH authentication.
 
 ```sh
